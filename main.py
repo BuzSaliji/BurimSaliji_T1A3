@@ -8,6 +8,10 @@ MENU = {
 }
 
 
+def display_welcome_message():
+    print("Welcome to the Cafe Order App!")
+
+
 def main():
     pass
 
