@@ -17,6 +17,18 @@ def display_menu():
         print(f"{item.capitalize()}: ${price:.2f}")
 
 
+def get_order():
+    order = {}
+    while True:
+        item = input(
+            "\nSelect an item from the menu (or type 'done' to finish): ").lower()
+        if item == "done":
+            break
+        if item in MENU:
+            order[item] = 1
+    return order
+
+
 def main():
     display_welcome_message()
     display_menu()
