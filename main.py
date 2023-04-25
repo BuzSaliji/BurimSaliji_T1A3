@@ -29,9 +29,17 @@ def get_order():
     return order
 
 
+def calculate_total(order):
+    total = 0
+    for item in order:
+        total += MENU[item]
+    return total
+
+
 def main():
     display_welcome_message()
     display_menu()
+    order = get_order()
 
 
 if __name__ == "__main__":
