@@ -13,7 +13,7 @@ def display_welcome_message():
 
 
 def main():
-    pass
+    display_welcome_message()
 
 
 if __name__ == "__main__":
