@@ -19,6 +19,7 @@ def display_menu():
 
 def main():
     display_welcome_message()
+    display_menu()
 
 
 if __name__ == "__main__":
