@@ -19,6 +19,14 @@ def display_menu():
         print(f"{item.capitalize()}: ${price:.2f}")
 
 
+def display_order_summary(order, total):
+    current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    order_data = [[quantity, item.capitalize(), f"${MENU[item] * quantity:.2f}"]
+                  for item, quantity in order.items()]
+    print(f"\nOrder Summary ({current_time}):")
+    print(f"\nTotal: ${total:.2f}")
+
+
 def get_order():
     order = {}
     while True:
