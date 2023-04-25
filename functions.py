@@ -39,3 +39,12 @@ def calculate_total(order):
     for item in order:
         total += MENU[item]
     return total
+
+
+def get_payment(total):
+    while True:
+        payment = float(input("\nEnter payment amount: $"))
+        if payment >= total:
+            return payment
+        else:
+            print("Insufficient payment, please try again.")
