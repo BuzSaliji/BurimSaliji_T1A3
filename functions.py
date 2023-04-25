@@ -1,3 +1,5 @@
+import datetime
+
 MENU = {
     "espresso": 3.50,
     "cappuccino": 5.50,
