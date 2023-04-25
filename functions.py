@@ -25,7 +25,12 @@ def get_order():
         if item == "done":
             break
         if item in MENU:
-            order[item] = 1
+            if item in order:
+                order[item] += 1
+            else:
+                order[item] = 1
+        else:
+            print("Invalid selection, please try again.")
     return order
 
 
