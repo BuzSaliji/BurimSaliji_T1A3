@@ -43,8 +43,11 @@ def calculate_total(order):
 
 def get_payment(total):
     while True:
-        payment = float(input("\nEnter payment amount: $"))
-        if payment >= total:
-            return payment
-        else:
-            print("Insufficient payment, please try again.")
+        try:
+            payment = float(input("\nEnter payment amount: $"))
+            if payment >= total:
+                return payment
+            else:
+                print("Insufficient payment, please try again.")
+        except ValueError:
+            print("Invalid input, please enter a valid number.")
