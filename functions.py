@@ -65,13 +65,20 @@ def display_order_summary(order, total):
     print(f"\nTotal: ${total:.2f}")
 
 
-def get_payment(total):
+def get_payment(total, validate=False, test_payment=None):
     while True:
-        try:
-            payment = float(input("\nEnter payment amount: $"))
-            if payment >= total:
-                return payment
-            else:
-                print("Insufficient payment, please try again.")
-        except ValueError:
-            print("Invalid input, please enter a valid number.")
+        if validate:
+            payment = test_payment
+        else:
+            try:
+                payment = float(input("\nEnter payment amount: $"))
+            except ValueError:
+                print("Invalid input, please enter a valid number.")
+                continue
+
+        if payment >= total:
+            return payment
+        else:
+            print("Insufficient payment, please try again.")
+            if validate:
+                break
