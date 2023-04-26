@@ -85,10 +85,11 @@ def get_payment(total, validate=False, test_payment=None):
                 break
 
 
-def summary_file(order_data, total, current_time):
-    filename = f"order_summary_{current_time.replace(':', '-')}.csv"
+def receipt(order, total, current_time):
+    filename = f"receipt_{current_time.replace(':', '-')}.txt"
     with open(filename, "w") as file:
-        file.write(f"Order Summary ({current_time}):\n")
-        for quantity, item, price in order:
-            file.write(f"{quantity} x {item}: {price}\n")
+        file.write(f"Receipt ({current_time}):\n")
+        for item, quantity in order.items():
+            price = f"${MENU[item] * quantity:.2f}"
+            file.write(f"{quantity} x {item.capitalize()}: {price}\n")
         file.write(f"\nTotal: ${total:.2f}\n")
