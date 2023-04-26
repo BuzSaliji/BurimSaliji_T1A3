@@ -41,8 +41,8 @@ def get_order():
 
 def calculate_total(order):
     total = 0
-    for item in order:
-        total += MENU[item]
+    for item, quantity in order.items():
+        total += MENU[item] * quantity
     return total
 
 
