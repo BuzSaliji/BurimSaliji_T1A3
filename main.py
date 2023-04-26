@@ -10,7 +10,8 @@ def main():
     display_order_summary(order, total)
     payment = get_payment(total)
     change = payment - total
-    print(f"\nTotal: ${total:.2f}")
+    print(f"\nPayment accepted. Change: ${change:.2f}")
+    print("Thank you for your order!")
 
 
 if __name__ == "__main__":

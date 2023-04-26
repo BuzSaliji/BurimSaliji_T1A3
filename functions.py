@@ -1,4 +1,5 @@
 import datetime
+from tabulate import tabulate
 
 MENU = {
     "espresso": 3.50,
@@ -15,16 +16,10 @@ def display_welcome_message():
 
 
 def display_menu():
-    for item, price in MENU.items():
-        print(f"{item.capitalize()}: ${price:.2f}")
-
-
-def display_order_summary(order, total):
-    current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    order_data = [[quantity, item.capitalize(), f"${MENU[item] * quantity:.2f}"]
-                  for item, quantity in order.items()]
-    print(f"\nOrder Summary ({current_time}):")
-    print(f"\nTotal: ${total:.2f}")
+    menu_data = [[item.capitalize(), f"${price:.2f}"]
+                 for item, price in MENU.items()]
+    print("\nMenu:")
+    print(tabulate(menu_data, headers=["Item", "Price"], tablefmt="grid"))
 
 
 def get_order():
@@ -49,6 +44,17 @@ def calculate_total(order):
     for item in order:
         total += MENU[item]
     return total
+
+
+def display_order_summary(order, total):
+    current_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    order_data = [[quantity, item.capitalize(), f"${MENU[item] * quantity:.2f}"]
+                  for item, quantity in order.items()]
+
+    print(f"\nOrder Summary ({current_time}):")
+    print(tabulate(order_data, headers=[
+          "Quantity", "Item", "Price"], tablefmt="grid"))
+    print(f"\nTotal: ${total:.2f}")
 
 
 def get_payment(total):
