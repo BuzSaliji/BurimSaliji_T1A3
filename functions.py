@@ -30,10 +30,18 @@ def get_order():
         if item == "done":
             break
         if item in MENU:
-            if item in order:
-                order[item] += 1
-            else:
-                order[item] = 1
+            try:
+                quantity = int(
+                    input(f"How many {item.capitalize()} do you want to add? "))
+                if quantity <= 0:
+                    print("Please enter a valid quantity.")
+                    continue
+                if item in order:
+                    order[item] += quantity
+                else:
+                    order[item] = quantity
+            except ValueError:
+                print("Invalid input. Please enter a valid number.")
         else:
             print("Invalid selection, please try again.")
     return order
