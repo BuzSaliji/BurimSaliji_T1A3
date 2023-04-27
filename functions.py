@@ -86,10 +86,11 @@ def get_payment(total, validate=False, test_payment=None):
 
 
 def receipt(order, total, current_time):
-    filename = f"receipt_{current_time.replace(':', '-')}.txt"
-    with open(filename, "w") as file:
-        file.write(f"Receipt ({current_time}):\n")
+    filename = f"receipt_{current_time.replace(':', '-')}.csv"
+    with open(filename, "w", newline="") as file:
+        writer = csv.writer(file)
+        writer.writerow([f"Receipt ({current_time}):"])
         for item, quantity in order.items():
             price = f"${MENU[item] * quantity:.2f}"
-            file.write(f"{quantity} x {item.capitalize()}: {price}\n")
-        file.write(f"\nTotal: ${total:.2f}\n")
+            writer.writerow([f"{quantity} x {item.capitalize()}: {price}"])
+        writer.writerow([f"Total: {total:.2f}"])
