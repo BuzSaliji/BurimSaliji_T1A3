@@ -1,6 +1,8 @@
 import datetime
 import csv
 from tabulate import tabulate
+from termcolor import colored
+
 
 MENU = {
     "espresso": 3.50,
@@ -13,14 +15,21 @@ MENU = {
 
 
 def display_welcome_message():
-    print("Welcome to the Cafe Order App!")
+    print(colored("Welcome to the Cafe Order App!", "yellow"))
 
 
 def display_menu():
     menu_data = [[item.capitalize(), f"${price:.2f}"]
                  for item, price in MENU.items()]
-    print("\nMenu:")
-    print(tabulate(menu_data, headers=["Item", "Price"], tablefmt="grid"))
+    headers = [colored("Item", "yellow"), colored("Price", "yellow")]
+    table = tabulate(menu_data, headers=headers, tablefmt="grid")
+    table = table.replace('+', colored('+', 'blue'))
+    table = table.replace('-', colored('-', 'blue'))
+    table = table.replace('|', colored('|', 'blue'))
+    table = table.replace('=', colored('=', 'blue'))
+
+    print(colored("\nMenu:", "yellow"))
+    print(table)
 
 
 def get_order():
