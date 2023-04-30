@@ -1,5 +1,5 @@
 import datetime
-import csv
+from termcolor import colored
 from functions import (display_welcome_message,
                        display_menu, get_order, calculate_total, get_payment, display_order_summary, receipt, MENU)
 
@@ -14,8 +14,8 @@ def main():
     receipt(order, total, current_time)
     payment = get_payment(total)
     change = payment - total
-    print(f"\nPayment accepted. Change: ${change:.2f}")
-    print("Thank you for your order!")
+    print(colored(f"\nPayment accepted. Change: ${change:.2f}", "green"))
+    print(colored("Thank you for your order!", "green"))
 
 
 if __name__ == "__main__":
