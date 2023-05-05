@@ -36,10 +36,22 @@ def get_order():
     order = {}
     while True:
         item = input(colored(
-            "\nSelect an item from the menu (or type 'done' to finish): ", "yellow")).lower()
+            "\nSelect an item from the menu, type 'remove' to remove an item, or type 'done' to finish: ", "yellow")).lower()
+
         if item == "done":
             break
-        if item in MENU:
+        elif item == "remove":
+            remove_item = input(colored(
+                "\nEnter the item you want to remove (or type 'done' to finish): ", "yellow")).lower()
+            if remove_item in order:
+                del order[remove_item]
+                print(colored(
+                    f"{remove_item.capitalize()} has been removed from your order.", "green"))
+            elif remove_item == 'done':
+                continue
+            else:
+                print(colored("Invalid selection, please try again.", "red"))
+        elif item in MENU:
             try:
                 quantity = int(
                     input(colored(f"How many {item.capitalize()} do you want to add? ", "yellow")))
